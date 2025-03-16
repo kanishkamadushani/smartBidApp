@@ -8,6 +8,10 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   admin: { type: Boolean, required: true },
+  first_name: { type: String, required: true },
+  last_name: { type: String, required: true },
+  contact_number: { type: String, required: true },
+  address: { type: String, required: true },
 });
 
 //static method
@@ -15,10 +19,21 @@ userSchema.statics.signup = async function (
   email,
   password,
   re_password,
-  admin
+  admin,
+  first_name,
+  last_name,
+  contact_number,
+  address
 ) {
   // check bank fields
-  if (!email || !password) {
+  if (
+    !email ||
+    !password ||
+    !first_name ||
+    !last_name ||
+    !contact_number ||
+    !address
+  ) {
     throw Error("Field can not be blank!");
   }
 
@@ -48,7 +63,15 @@ userSchema.statics.signup = async function (
   const hash = bcrypt.hashSync(password, salt);
 
   //send to db for creating user
-  const user = await this.create({ email, password: hash, admin });
+  const user = await this.create({
+    email,
+    password: hash,
+    admin,
+    first_name,
+    last_name,
+    address,
+    contact_number,
+  });
 
   return user;
 };

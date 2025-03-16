@@ -10,7 +10,15 @@ export const useSignup = () => {
 
   const { dispatch } = useAuthContext();
 
-  const signup = async (email, password, re_password) => {
+  const signup = async (
+    email,
+    password,
+    re_password,
+    first_name,
+    last_name,
+    contact_number,
+    address
+  ) => {
     setLoading(true);
     setError(false);
 
@@ -23,6 +31,10 @@ export const useSignup = () => {
         password,
         re_password,
         admin: false,
+        first_name,
+        last_name,
+        contact_number,
+        address,
       }),
     });
 

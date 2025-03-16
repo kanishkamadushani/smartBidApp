@@ -6,6 +6,10 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [re_password, setRe_password] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
+  const [contact_number, setContactNUmber] = useState("");
+  const [address, setAddress] = useState("");
 
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -18,7 +22,15 @@ const SignUpForm = () => {
     e.preventDefault();
     setLoader(true);
     //call the sign up function
-    await signup(email, password, re_password);
+    await signup(
+      email,
+      password,
+      re_password,
+      first_name,
+      last_name,
+      contact_number,
+      address
+    );
     setLoader(false);
     setEmail("");
     setPassword("");
@@ -56,6 +68,46 @@ const SignUpForm = () => {
                 value={re_password}
               />
             </div>
+
+            <div className="mb-3">
+              <label className="form-label">First Name</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setFirstName(e.target.value)}
+                value={first_name}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Last Name</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setLastName(e.target.value)}
+                value={last_name}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Contact Number</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setContactNUmber(e.target.value)}
+                value={contact_number}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Address</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={(e) => setAddress(e.target.value)}
+                value={address}
+              />
+            </div>
+
             <div className="mb-3 form-check"></div>
             <button type="submit" className="btn btn-primary">
               Submit
