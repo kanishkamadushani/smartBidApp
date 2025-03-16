@@ -27,12 +27,16 @@ const NavBar = () => {
                     to={"/login"}
                     style={{ color: "white", textDecoration: "none" }}
                   >
-                    {" "}
                     Login
                   </Link>
                 </button>
                 <button type="button" className="btn btn-outline-primary">
-                  Sign Up
+                  <Link
+                    to={"/signup"}
+                    style={{ color: "blue", textDecoration: "none" }}
+                  >
+                    Sign Up
+                  </Link>
                 </button>
               </>
             )}
