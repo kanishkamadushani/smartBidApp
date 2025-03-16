@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { Item } from "../models/itemModel.js";
 
+//create an item
 export const createItem = async (req, res) => {
   const { name, category, amount, description, img } = req.body;
 
@@ -41,6 +42,16 @@ export const createItem = async (req, res) => {
       img,
     });
     res.status(200).json(item);
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
+
+//get all items
+export const allitems = async (req, res) => {
+  try {
+    const items = await Item.find();
+    res.status(200).json(items);
   } catch (error) {
     res.status(401).json({ error: error.message });
   }
