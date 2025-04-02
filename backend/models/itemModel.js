@@ -8,6 +8,11 @@ const itemSchema = new Schema({
   amount: { type: Number, required: true },
   description: { type: String, required: true },
   img: { type: String, required: true },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 export const Item = mongoose.model("Item", itemSchema);
