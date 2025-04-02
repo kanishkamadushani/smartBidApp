@@ -3,7 +3,7 @@ import { Item } from "../models/itemModel.js";
 
 //create an item
 export const createItem = async (req, res) => {
-  const { name, category, amount, description, img } = req.body;
+  const { name, category, amount, description, img, user_id } = req.body;
 
   let emptyFields = [];
 
@@ -40,6 +40,7 @@ export const createItem = async (req, res) => {
       amount,
       description,
       img,
+      user_id,
     });
     res.status(200).json(item);
   } catch (error) {
