@@ -18,7 +18,7 @@ const NavBar = () => {
     <div>
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
-          SmartBid
+          <Link to={"/"}> SmartBid</Link>
           <div className="d-flex" role="search">
             {!user && (
               <>
