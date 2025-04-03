@@ -5,7 +5,12 @@ import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp";
 import ItemDetail from "./components/ItemDetail";
 
+import { useAuthContext } from "./hooks/useAuthContext";
+
 function App() {
+  //user
+  const { user } = useAuthContext();
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -14,7 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/item/:id" element={<ItemDetail />} />
+          <Route path="/item/:id" element={user ? <ItemDetail /> : <Login />} />
         </Routes>
       </BrowserRouter>
     </div>
