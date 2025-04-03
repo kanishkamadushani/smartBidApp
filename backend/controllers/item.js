@@ -59,7 +59,7 @@ export const allitems = async (req, res) => {
 };
 
 // Search items by category
-export const searchItems = async (req, res) => {
+/*export const searchItems = async (req, res) => {
   const { category } = req.query; // Get the category from the query parameters
 
   if (!category) {
@@ -79,6 +79,39 @@ export const searchItems = async (req, res) => {
     res.status(200).json(items);
   } catch (error) {
     res.status(401).json({ error: error.message });
+  }
+};*/
+
+export const searchItems = async (req, res) => {
+  const { id, name, category, amount, userId } = req.query; // Get filters from query parameters
+
+  if (!id && !name && !category && !amount && !userId) {
+    return res
+      .status(400)
+      .json({ error: "At least one search parameter is required!" });
+  }
+
+  try {
+    // Build dynamic query object
+    let query = {};
+    if (id) query.id = id;
+    if (name) query.name = { $regex: new RegExp(name, "i") }; // Case-insensitive search
+    if (category) query.category = category;
+    if (amount) query.amount = amount;
+    if (userId) query.userId = userId;
+
+    // Execute the query
+    const items = await Item.find(query);
+
+    if (items.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No items found matching the criteria" });
+    }
+
+    res.status(200).json(items);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 };
 
@@ -107,6 +140,41 @@ export const updateItem = async (req, res) => {
     }
 
     // Send back the updated item
+    res.status(200).json(item);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+// Delete an item (DELETE)
+export const deleteItem = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid item ID" });
+    }
+
+    const item = await Item.findByIdAndDelete(id);
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    res.status(200).json({ message: "Item deleted successfully", item });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getItemById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const item = await Item.findById(id);
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
     res.status(200).json(item);
   } catch (error) {
     res.status(500).json({ error: error.message });
