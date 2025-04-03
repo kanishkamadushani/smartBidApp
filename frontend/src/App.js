@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import ItemDetail from "./components/ItemDetail";
 
 import { useAuthContext } from "./hooks/useAuthContext";
+import CreateItem from "./components/CreateItem";
 
 function App() {
   //user
@@ -20,6 +21,10 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/item/:id" element={user ? <ItemDetail /> : <Login />} />
+          <Route
+            path="/create_item"
+            element={user ? <CreateItem /> : <Login />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
