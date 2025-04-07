@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -12,10 +12,19 @@ const NavBar = () => {
   //user logout
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   //logout function
   const handleLogout = () => {
     logout();
+  };
+
+  const signUp = () => {
+    navigate("/signup");
+  };
+
+  const login = () => {
+    navigate("login");
   };
 
   return (
@@ -48,16 +57,19 @@ const NavBar = () => {
           <div className="d-flex" role="search">
             {!user && (
               <>
-                <button type="button" className="btn btn-primary me-1">
-                  <Link
-                    to={"/login"}
-                    style={{ color: "white", textDecoration: "none" }}
-                  >
-                    Login
-                  </Link>
+                <button
+                  type="button"
+                  className="btn btn-primary me-1"
+                  onClick={login}
+                >
+                  Login
                 </button>
-                <button type="button" className="btn btn-outline-primary">
-                  <Link to={"/signup"}>Sign Up</Link>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary"
+                  onClick={signUp}
+                >
+                  Sign up
                 </button>
               </>
             )}
