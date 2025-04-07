@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+import navLogo from "../assets/images/LogoNav.png";
+
+import { motion } from "framer-motion";
+
 const NavBar = () => {
   //user logout
   const { logout } = useLogout();
@@ -18,13 +22,28 @@ const NavBar = () => {
     <div>
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
-          <Link to={"/"}> SmartBid</Link>
+          <Link to={"/"} className="me-5">
+            {" "}
+            {/* Display the logo as an image */}
+            <img
+              src={navLogo}
+              alt="SmartBid Logo"
+              style={{ height: "40px" }}
+            />{" "}
+          </Link>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link active" to={"/create_item"}>
+            <motion.li
+              className="nav-item"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link
+                className="nav-link active nav-link-custom"
+                to={"/create_item"}
+              >
                 Create Item{" "}
               </Link>{" "}
-            </li>
+            </motion.li>
           </ul>
           <div className="d-flex" role="search">
             {!user && (
