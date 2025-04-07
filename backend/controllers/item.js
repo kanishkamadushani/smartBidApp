@@ -4,7 +4,7 @@ import { Item } from "../models/itemModel.js";
 //create an item
 export const createItem = async (req, res) => {
   const { name, category, amount, description, img, user_id } = req.body;
-
+  console.log(name, category, amount, description, img, user_id);
   let emptyFields = [];
 
   if (!name) {

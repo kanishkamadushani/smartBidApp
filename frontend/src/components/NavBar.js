@@ -19,8 +19,8 @@ const NavBar = () => {
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
           <Link to={"/"}> SmartBid</Link>
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
               <Link className="nav-link active" to={"/create_item"}>
                 Create Item{" "}
               </Link>{" "}
