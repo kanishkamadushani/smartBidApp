@@ -57,19 +57,14 @@ const NavBar = () => {
                   </Link>
                 </button>
                 <button type="button" className="btn btn-outline-primary">
-                  <Link
-                    to={"/signup"}
-                    style={{ color: "blue", textDecoration: "none" }}
-                  >
-                    Sign Up
-                  </Link>
+                  <Link to={"/signup"}>Sign Up</Link>
                 </button>
               </>
             )}
             {user && (
               <button
                 type="button"
-                className="btn btn-outline-primary"
+                className="btn btn-outline-primary "
                 onClick={handleLogout}
               >
                 Logout

@@ -29,3 +29,27 @@ code {
 .nav-link-custom:hover {
   color: #f0efe0 !important; /* Color when hovered */
 }
+
+/* Base button styling */
+.btn-outline-primary {
+  background-color: transparent; /* Initial background */
+  color: #bec81f !important; /* Initial text color */
+  border: 2px solid #bec81f; /* Initial border color */
+  padding: 8px 16px; /* Adjust padding as needed */
+  transition: all 0.3s ease-in-out; /* Transition all properties over 0.3s */
+  cursor: pointer; /* Makes the cursor a pointer on hover */
+}
+
+/* Hover effect */
+.btn-outline-primary:hover {
+  background-color: transparent;
+  color: #f5f3cc !important; /* Change text color on hover */
+  border-color: #f5f3cc; /* Change border color on hover */
+}
+
+/* Active (click) effect */
+.btn-outline-primary:active {
+  background-color: #bec81f !important; /* Change background color when clicked */
+  color: #005248 !important; /* Change text color to white when clicked */
+  border-color: #bec81f !important; /* Change border color when clicked */
+}
