@@ -2,14 +2,16 @@ import React from "react";
 
 const Item = ({ name, catagery, description, amount, img, id }) => {
   return (
-    <div>
-      <div className="card" style={{ width: "18rem" }}>
-        <img
-          src="https://picsum.photos/200"
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body">
+    <div className="flip-card">
+      <div className="flip-card-inner">
+        <div className="flip-card-front">
+          <img
+            src="https://picsum.photos/200"
+            alt="Avatar"
+            style={{ width: "300px", height: "300px" }}
+          />
+        </div>
+        <div className="flip-card-back">
           <h5 className="card-title"> {name} </h5>
           <p className="card-text">{description}</p>
           <p className="card-text">{amount}</p>

@@ -43,11 +43,18 @@ const LoginForm = () => {
             />
           </div>
           <div className="mb-3 form-check"></div>
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button type="submit" className="btn btn-primary w-100">
+            {loading ? "Loading..." : "Submit"}
           </button>
-          {error && <p> {error} </p>}
+          {error && <p className="text-danger mt-2">{error}</p>}
         </form>
+
+        {/* Forgot Password Link */}
+        <div className="mt-3 text-center">
+          <a href="/forgot-password" className="text-decoration-none">
+            Forgot Password?
+          </a>
+        </div>
       </div>
     </div>
   );
