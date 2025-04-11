@@ -9,6 +9,7 @@ body {
   font-family: "Winky Sans", sans-serif;
   font-weight: 400; /* Regular weight */
   font-style: normal;
+  background-color: #f0efe0;
 }
 
 code {
@@ -22,7 +23,7 @@ code {
 
 .nav-link-custom {
   color: #f5f3cc !important; /* Initial color */
-  font-weight: bold;
+
   transition: color 0.3s ease; /* Smooth transition effect */
 }
 
@@ -76,4 +77,23 @@ code {
   background-color: #bec81f !important; /* Change background color when clicked */
   color: #005248 !important; /* Change text color to white when clicked */
   border-color: #bec81f !important; /* Change border color when clicked */
+}
+
+.logo-shadow {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  border-radius: 12%;
+  transition: filter 0.3s ease;
+}
+
+.logo-shadow:hover {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+}
+
+.text-color-dark {
+  color: #005248 !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.text-color-dark-no-shadow {
+  color: #005248 !important;
 }
