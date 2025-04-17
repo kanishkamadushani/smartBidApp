@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Grid } from "@mui/material";
 
 const MyItems = () => {
   //user
@@ -34,24 +35,20 @@ const MyItems = () => {
   }, []);
 
   return (
-    <div className="album py-5 bg-body-tertiary">
-      <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {items &&
-            items.map((item) => (
-              <Item
-                key={item._id}
-                name={item.name}
-                category={item.category}
-                amount={item.amount}
-                description={item.description}
-                img={item.img}
-                id={item._id}
-              />
-            ))}
-        </div>
-      </div>
-    </div>
+    <Grid container spacing={2} justifyContent="center">
+      {items &&
+        items.map((item) => (
+          <Item
+            key={item._id}
+            name={item.name}
+            category={item.category}
+            amount={item.amount}
+            description={item.description}
+            img={item.img}
+            id={item._id}
+          />
+        ))}
+    </Grid>
   );
 };
 
