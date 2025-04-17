@@ -107,7 +107,7 @@ const CreateItem = () => {
               </select>
             </div>
             <div className="mb-3">
-              <label className="form-label">Amount</label>
+              <label className="form-label">Minumum Amount</label>
               <input
                 type="number"
                 className="form-control"

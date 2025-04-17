@@ -40,9 +40,9 @@ const NavBar = () => {
               style={{ height: "40px" }}
             />{" "}
           </Link>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex  flex-row">
             <motion.li
-              className="nav-item"
+              className="nav-item me-4"
               whileHover={{ scale: 1.3 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -52,6 +52,50 @@ const NavBar = () => {
               >
                 Create Item{" "}
               </Link>{" "}
+            </motion.li>
+            <motion.li
+              className="nav-item me-4"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link
+                className="nav-link active nav-link-custom"
+                to={"/my_items"}
+              >
+                My items
+              </Link>{" "}
+            </motion.li>
+            <motion.li
+              className="nav-item me-4"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link className="nav-link active nav-link-custom" to={"/my_bids"}>
+                My bids
+              </Link>{" "}
+            </motion.li>
+
+            <motion.li
+              className="nav-item me-4"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link
+                className="nav-link active nav-link-custom"
+                to="/notifications"
+              >
+                Notifications
+              </Link>
+            </motion.li>
+
+            <motion.li
+              className="nav-item me-4"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link className="nav-link active nav-link-custom" to="/about_us">
+                About Us
+              </Link>
             </motion.li>
           </ul>
           <div className="d-flex" role="search">

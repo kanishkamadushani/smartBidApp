@@ -57,31 +57,6 @@ export const allitems = async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 };
-
-// Search items by category
-/*export const searchItems = async (req, res) => {
-  const { category } = req.query; // Get the category from the query parameters
-
-  if (!category) {
-    return res.status(400).json({ error: "Category is required!" });
-  }
-
-  try {
-    // Find items where the category matches
-    const items = await Item.find({ category: category });
-
-    if (items.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No items found in this category" });
-    }
-    // Return the found items
-    res.status(200).json(items);
-  } catch (error) {
-    res.status(401).json({ error: error.message });
-  }
-};*/
-
 export const searchItems = async (req, res) => {
   const { id, name, category, amount, userId } = req.query; // Get filters from query parameters
 
