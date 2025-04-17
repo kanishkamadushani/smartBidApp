@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const MyItems = () => {
+  //user
+  const { user } = useAuthContext();
   //define states
   const [items, setItems] = useState([]);
 
@@ -10,7 +13,13 @@ const MyItems = () => {
     //API request
     const getItems = async () => {
       try {
-        const response = await fetch("/api/item/all");
+        const response = await fetch("/api/item/by_email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: user.email }),
+        });
         const json = await response.json();
 
         if (response.ok) {

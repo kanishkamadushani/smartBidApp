@@ -169,7 +169,7 @@ export const getItemsbyEmail = async (req, res) => {
 
     //get all items from the user id
     const items = await Item.find({ user_id: user });
-    console.log(items);
+    res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
