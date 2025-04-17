@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Item } from "../models/itemModel.js";
+import { User } from "../models/userModel.js";
 
 //create an item
 export const createItem = async (req, res) => {
@@ -151,6 +152,24 @@ export const getItemById = async (req, res) => {
     }
 
     res.status(200).json(item);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const getItemsbyEmail = async (req, res) => {
+  try {
+    //getting userid by email.
+    const { email } = req.body;
+    const user = await User.findOne({ email }, { _id: 1 }).lean();
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    console.log(user);
+
+    //get all items from the user id
+    const items = await Item.find({ user_id: user });
+    console.log(items);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

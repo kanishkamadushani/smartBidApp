@@ -6,6 +6,7 @@ import {
   updateItem,
   deleteItem,
   getItemById,
+  getItemsbyEmail,
 } from "../controllers/item.js";
 
 const router = express.Router();
@@ -27,4 +28,7 @@ router.patch("/:id", updateItem);
 
 //delete item,
 router.delete("/:id", deleteItem);
+
+//get items by email
+router.post("/by_email", getItemsbyEmail);
 export default router;
