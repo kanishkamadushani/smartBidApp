@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 //import axios from "axios"; // Import axios for API calls
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const CreateItem = () => {
   const [name, setName] = useState("");
@@ -11,6 +12,7 @@ const CreateItem = () => {
   const [message, setMessage] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [loader, setLoader] = useState(false);
+  const { user } = useAuthContext();
 
   const categories = ["electronics", "vehicles", "furniture"];
 
@@ -25,7 +27,7 @@ const CreateItem = () => {
       category,
       amount,
       img,
-      user_id: "67dc799eac71a5708951c53d",
+      email: user.email,
     };
 
     setErrorMsg("");
@@ -107,7 +109,7 @@ const CreateItem = () => {
               </select>
             </div>
             <div className="mb-3">
-              <label className="form-label">Minumum Amount</label>
+              <label className="form-label">Starting Amount</label>
               <input
                 type="number"
                 className="form-control"

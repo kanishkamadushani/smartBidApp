@@ -4,8 +4,8 @@ import { User } from "../models/userModel.js";
 
 //create an item
 export const createItem = async (req, res) => {
-  const { name, category, amount, description, img, user_id } = req.body;
-  console.log(name, category, amount, description, img, user_id);
+  const { name, category, amount, description, img, email } = req.body;
+  console.log(name, category, amount, description, img, email);
   let emptyFields = [];
 
   if (!name) {
@@ -35,13 +35,20 @@ export const createItem = async (req, res) => {
   }
 
   try {
+    //search user_id from email
+    const user = await User.findOne({ email }, { _id: 1 }).lean();
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    //create user
     const item = await Item.create({
       name,
       category,
       amount,
       description,
       img,
-      user_id,
+      user_id: user,
     });
     res.status(200).json(item);
   } catch (error) {
@@ -169,6 +176,8 @@ export const getItemsbyEmail = async (req, res) => {
 
     //get all items from the user id
     const items = await Item.find({ user_id: user });
+    //const items = await Item.find({ user_id: user._id });
+
     res.status(200).json(items);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -7,6 +7,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import navLogo from "../assets/images/LogoNav.png";
 
 import { motion } from "framer-motion";
+import { Box, InputBase } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const NavBar = () => {
   //user logout
@@ -97,6 +99,24 @@ const NavBar = () => {
                 About Us
               </Link>
             </motion.li>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                backgroundColor: "#f1f1f1", // Background color for the search bar
+                borderRadius: 2, // Rounded corners
+                px: 2, // Padding left and right
+                py: 0.5, // Padding top and bottom
+                width: "220px", // Fixed width for search bar
+              }}
+            >
+              <SearchIcon sx={{ color: "gray", mr: 1 }} /> {/* Search icon */}
+              <InputBase
+                placeholder="Search..."
+                fullWidth
+                sx={{ fontSize: 14 }}
+              />
+            </Box>
           </ul>
           <div className="d-flex" role="search">
             {!user && (

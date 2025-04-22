@@ -40,7 +40,7 @@ const Item = ({ name, catagery, description, amount, img, id }) => {
         </CardContent>
         <CardActions>
           <Button variant="contained" color="success" size="small">
-            Bid
+            Bid Here
           </Button>
           <Button size="small" onClick={handdleExploreClick}>
             Explore
