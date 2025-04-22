@@ -1,5 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useSignup } from "../hooks/useSignUp";
+import {
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Grid,
+  Paper,
+  CircularProgress,
+} from "@mui/material";
 
 const SignUpForm = () => {
   //states
@@ -37,86 +46,151 @@ const SignUpForm = () => {
     setRe_password("");
   };
   return (
-    <div>
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <div className="border p-4 rounded">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Email address</label>
-              <input
-                type="email"
-                className="form-control"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Re-Password</label>
-              <input
-                type="password"
-                className="form-control"
-                onChange={(e) => setRe_password(e.target.value)}
-                value={re_password}
-              />
-            </div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+      bgcolor="#f0efe0"
+    >
+      <Paper
+        elevation={6}
+        sx={{
+          padding: 4,
+          maxWidth: 600,
+          borderRadius: 3,
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+        }}
+      >
+        <Typography variant="h5" textAlign="center" mb={3}>
+          SignUp
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            {" "}
+            <TextField
+              label="Email"
+              type="email"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            {" "}
+            <TextField
+              label="Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />{" "}
+          </Box>
+        </Box>
 
-            <div className="mb-3">
-              <label className="form-label">First Name</label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={first_name}
-              />
-            </div>
-            <div className="mb-3">
-              <label className="form-label">Last Name</label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setLastName(e.target.value)}
-                value={last_name}
-              />
-            </div>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            <TextField
+              label="Re-Password"
+              type="password"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setRe_password(e.target.value)}
+              value={re_password}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            {" "}
+            <TextField
+              label="First Name"
+              type="text"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={first_name}
+            />
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 2,
+          }}
+        >
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            {" "}
+            <TextField
+              label="Last Name"
+              type="text"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setLastName(e.target.value)}
+              value={last_name}
+            />
+          </Box>
+          <Box sx={{ flex: 1, minWidth: "45%" }}>
+            {" "}
+            <TextField
+              label="Contact Number"
+              type="text"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              onChange={(e) => setContactNUmber(e.target.value)}
+              value={contact_number}
+            />
+          </Box>
+        </Box>
 
-            <div className="mb-3">
-              <label className="form-label">Contact Number</label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setContactNUmber(e.target.value)}
-                value={contact_number}
-              />
-            </div>
+        <TextField
+          label="Address"
+          type="text"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          onChange={(e) => setAddress(e.target.value)}
+          value={address}
+        />
 
-            <div className="mb-3">
-              <label className="form-label">Address</label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => setAddress(e.target.value)}
-                value={address}
-              />
-            </div>
+        <Button
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{
+            mt: 2,
+            backgroundColor: "#005248",
+            "&:hover": {
+              backgroundColor: "#bec81f",
+            },
+          }}
+          onClick={handleSubmit}
+        >
+          Signup
+        </Button>
 
-            <div className="mb-3 form-check"></div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-            {error && <p> {error} </p>}
-          </form>
-        </div>
-      </div>
-    </div>
+        {error && <p> {error} </p>}
+      </Paper>
+    </Box>
   );
 };
 
