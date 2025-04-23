@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.js";
 import itemRouter from "./routes/item.js";
+import bidRouter from "./routes/bid.js";
 import "dotenv/config";
 
 const app = express();
@@ -16,6 +17,7 @@ app.use((req, res, next) => {
 
 app.use("/api/user", userRouter);
 app.use("/api/item", itemRouter);
+app.use("/api/bid", bidRouter);
 
 //Server and DB connection
 mongoose
