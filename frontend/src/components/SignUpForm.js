@@ -75,25 +75,25 @@ const SignUpForm = () => {
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             {" "}
             <TextField
-              label="Email"
-              type="email"
+              label="First Name"
+              type="text"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={(e) => setFirstName(e.target.value)}
+              value={first_name}
             />
           </Box>
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             {" "}
             <TextField
-              label="Password"
-              type="password"
+              label="Last Name"
+              type="text"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              onChange={(e) => setLastName(e.target.value)}
+              value={last_name}
             />{" "}
           </Box>
         </Box>
@@ -107,25 +107,25 @@ const SignUpForm = () => {
         >
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             <TextField
-              label="Re-Password"
-              type="password"
+              label="Email"
+              type="email"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setRe_password(e.target.value)}
-              value={re_password}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
           </Box>
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             {" "}
             <TextField
-              label="First Name"
+              label="Contact Number"
               type="text"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setFirstName(e.target.value)}
-              value={first_name}
+              onChange={(e) => setContactNUmber(e.target.value)}
+              value={contact_number}
             />
           </Box>
         </Box>
@@ -139,25 +139,25 @@ const SignUpForm = () => {
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             {" "}
             <TextField
-              label="Last Name"
-              type="text"
+              label="Password"
+              type="password"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setLastName(e.target.value)}
-              value={last_name}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
             />
           </Box>
           <Box sx={{ flex: 1, minWidth: "45%" }}>
             {" "}
             <TextField
-              label="Contact Number"
-              type="text"
+              label="Re-Password"
+              type="password"
               variant="outlined"
               fullWidth
               margin="normal"
-              onChange={(e) => setContactNUmber(e.target.value)}
-              value={contact_number}
+              onChange={(e) => setRe_password(e.target.value)}
+              value={re_password}
             />
           </Box>
         </Box>

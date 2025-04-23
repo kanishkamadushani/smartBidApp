@@ -1,22 +1,20 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
-
+import { useNotification } from "../hooks/useNotifications"; // Add this import
 import navLogo from "../assets/images/LogoNav.png";
-
 import { motion } from "framer-motion";
-import { Box, InputBase } from "@mui/material";
+import { Box, InputBase, Badge } from "@mui/material"; // Add Badge to the imports
 import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications"; // Add this import
 
 const NavBar = () => {
-  //user logout
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { storedNotifications } = useNotification(); // Get notifications
   const navigate = useNavigate();
 
-  //logout function
   const handleLogout = () => {
     logout();
   };
@@ -34,13 +32,7 @@ const NavBar = () => {
       <nav className="navbar bg-body-tertiary">
         <div className="container-fluid">
           <Link to={"/"} className="me-5">
-            {" "}
-            {/* Display the logo as an image */}
-            <img
-              src={navLogo}
-              alt="SmartBid Logo"
-              style={{ height: "40px" }}
-            />{" "}
+            <img src={navLogo} alt="SmartBid Logo" style={{ height: "40px" }} />{" "}
           </Link>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex  flex-row">
             <motion.li
@@ -76,20 +68,6 @@ const NavBar = () => {
                 My bids
               </Link>{" "}
             </motion.li>
-
-            <motion.li
-              className="nav-item me-4"
-              whileHover={{ scale: 1.3 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <Link
-                className="nav-link active nav-link-custom"
-                to="/notifications"
-              >
-                Notifications
-              </Link>
-            </motion.li>
-
             <motion.li
               className="nav-item me-4"
               whileHover={{ scale: 1.3 }}
@@ -99,18 +77,37 @@ const NavBar = () => {
                 About Us
               </Link>
             </motion.li>
+            <motion.li
+              className="nav-item me-4"
+              whileHover={{ scale: 1.3 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Link
+                className="nav-link active nav-link-custom"
+                to="/notifications"
+              >
+                <Badge
+                  badgeContent={storedNotifications.length}
+                  color="error"
+                  invisible={storedNotifications.length === 0}
+                >
+                  <NotificationsIcon />
+                </Badge>
+              </Link>
+            </motion.li>
+
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                backgroundColor: "#f1f1f1", // Background color for the search bar
-                borderRadius: 2, // Rounded corners
-                px: 2, // Padding left and right
-                py: 0.5, // Padding top and bottom
-                width: "220px", // Fixed width for search bar
+                backgroundColor: "#f1f1f1",
+                borderRadius: 2,
+                px: 2,
+                py: 0.5,
+                width: "220px",
               }}
             >
-              <SearchIcon sx={{ color: "gray", mr: 1 }} /> {/* Search icon */}
+              <SearchIcon sx={{ color: "gray", mr: 1 }} />
               <InputBase
                 placeholder="Search..."
                 fullWidth
