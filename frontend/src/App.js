@@ -55,28 +55,28 @@ import ItemDetail from "./components/ItemDetail";
 import CreateItem from "./components/CreateItem";
 import MyItems from "./pages/MyItems";
 import MyBids from "./pages/MyBids";
-import NotificationsPage from "./pages/Notifications"; // renamed to avoid conflict
+import NotificationsPage from "./pages/Notifications";
 import AboutUs from "./pages/AboutUs";
+import BidPage from "./pages/BidPage";
 
 import { useAuthContext } from "./hooks/useAuthContext";
-import { NotificationProvider } from "./context/NotificationContext"; // ✅
-import Notifications from "./components/Notifications"; // ✅ UI component
+import { NotificationProvider } from "./context/NotificationContext";
+import Notifications from "./components/Notifications"; // ✅ this is the toast banner
 
 function App() {
   const { user } = useAuthContext();
 
   return (
     <NotificationProvider>
-      {" "}
-      {/* ✅ Wrap in NotificationProvider */}
       <div className="App">
         <BrowserRouter>
           <NavBar />
-          <Notifications /> {/* ✅ Show toast/banner notifications here */}
+          <Notifications /> {/* ✅ floating toast notifications */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+
             <Route
               path="/item/:id"
               element={user ? <ItemDetail /> : <Login />}
@@ -87,6 +87,7 @@ function App() {
               path="/notifications"
               element={user ? <NotificationsPage /> : <Login />}
             />
+            <Route path="/bid/:id" element={user ? <BidPage /> : <Login />} />
             <Route path="/about_us" element={user ? <AboutUs /> : <Login />} />
             <Route
               path="/create_item"
