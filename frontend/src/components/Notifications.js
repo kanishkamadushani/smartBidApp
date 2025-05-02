@@ -1,32 +1,11 @@
-/*import React from "react";
-import { Alert, Stack } from "@mui/material";
-import { useNotification } from "../hooks/useNotifications"; // ✅ Correct import
-
-const Notifications = () => {
-  const { notifications } = useNotification(); // ✅ Correct hook usage
-
-  return (
-    <Stack
-      spacing={2}
-      sx={{ position: "fixed", top: 16, right: 16, zIndex: 9999 }}
-    >
-      {notifications.map((note, idx) => (
-        <Alert key={idx} severity="success" variant="filled">
-          {note.message}
-        </Alert>
-      ))}
-    </Stack>
-  );
-};
-
-export default Notifications;*/
-// components/Notifications.js (toast notifications)
 import React from "react";
 import { Alert, Stack } from "@mui/material";
 import { useNotification } from "../hooks/useNotifications";
+import { useNotificationsContext } from "../hooks/useNotificationsContext";
 
 const NotificationBanner = () => {
   const { toasts } = useNotification();
+  const { notifications } = useNotificationsContext();
 
   return (
     <Stack

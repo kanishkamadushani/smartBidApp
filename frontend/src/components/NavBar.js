@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -8,11 +8,13 @@ import { motion } from "framer-motion";
 import { Box, InputBase, Badge } from "@mui/material"; // Add Badge to the imports
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications"; // Add this import
+import { useNotificationsContext } from "../hooks/useNotificationsContext";
 
 const NavBar = () => {
   const { logout } = useLogout();
   const { user } = useAuthContext();
-  const { storedNotifications } = useNotification(); // Get notifications
+  // const { storedNotifications } = useNotification(); // Get notifications
+  const { notifications, notifications_dispatch } = useNotificationsContext();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -26,6 +28,32 @@ const NavBar = () => {
   const login = () => {
     navigate("login");
   };
+
+  useEffect(() => {
+    if (user) {
+      //API to get all notifications
+      const getALLNotifications = async () => {
+        try {
+          const response = await fetch(`/api/notification/${user.email}`);
+          const json = await response.json();
+
+          if (response.ok) {
+            notifications_dispatch({
+              type: "SET NOTIFICATIONS",
+              payload: json,
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching notifications:", error);
+        }
+      };
+      getALLNotifications();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log("notifications updated:", notifications);
+  }, [notifications]);
 
   return (
     <div>
@@ -87,9 +115,9 @@ const NavBar = () => {
                 to="/notifications"
               >
                 <Badge
-                  badgeContent={storedNotifications.length}
+                  badgeContent={notifications.length}
                   color="error"
-                  invisible={storedNotifications.length === 0}
+                  invisible={notifications.length === 0}
                 >
                   <NotificationsIcon />
                 </Badge>
