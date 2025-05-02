@@ -10,6 +10,14 @@ export const notificationsReducer = (state, action) => {
     case "CREATE NOTIFICATION":
       return { notifications: [action.payload, ...state.notifications] };
 
+    //THIS HAS NOT BEEN IMPLEMENTED IN THE BACKEND
+    case "DELETE NOTIFICATION":
+      return {
+        notifications: state.notifications.filter(
+          (n) => n._id !== action.payload._id
+        ),
+      };
+
     default:
       return state;
 
