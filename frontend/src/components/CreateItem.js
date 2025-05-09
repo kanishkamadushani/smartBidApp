@@ -553,7 +553,9 @@ const CreateItem = () => {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
-      bgcolor="#f0efe0"
+      sx={{
+        background: "linear-gradient(135deg, #bec81f 0%, #2E3A59 100%)",
+      }}
     >
       <Paper
         elevation={6}
@@ -562,6 +564,7 @@ const CreateItem = () => {
           width: { xs: "90%", sm: 400 },
           borderRadius: 3,
           boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+          background: "#f0efe0",
         }}
       >
         <Typography variant="h5" textAlign="center" mb={3}>
