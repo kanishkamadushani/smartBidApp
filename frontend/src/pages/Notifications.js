@@ -15,7 +15,26 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 const NotificationsPage = () => {
   const { storedNotifications, removeNotification } = useNotification();
-  const { notifications } = useNotificationsContext();
+  const { notifications, notifications_dispatch } = useNotificationsContext();
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/notification/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const json = await response.json();
+
+      if (response.ok) {
+        notifications_dispatch({ type: "DELETE NOTIFICATION", payload: id });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Box p={4}>
@@ -34,7 +53,7 @@ const NotificationsPage = () => {
                   secondaryAction={
                     <IconButton
                       edge="end"
-                      onClick={() => removeNotification(notif._id)}
+                      onClick={() => handleDelete(notif._id)}
                     >
                       <DeleteIcon />
                     </IconButton>
