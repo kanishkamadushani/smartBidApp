@@ -14,6 +14,6 @@ router.post("/create", createNotification);
 router.get("/:email", getNotification);
 
 //delete notification
-router.delete("/notification/:id", deleteNotification);
+router.delete("/:id", deleteNotification);
 
 export default router;

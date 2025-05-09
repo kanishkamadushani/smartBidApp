@@ -39,7 +39,6 @@ export const getNotification = async (req, res) => {
 //delete notofications
 export const deleteNotification = async (req, res) => {
   const { id } = req.params;
-
   try {
     const deleted = await Notification.findByIdAndDelete(id);
     if (!deleted) {
